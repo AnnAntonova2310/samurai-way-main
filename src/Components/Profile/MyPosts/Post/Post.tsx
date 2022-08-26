@@ -1,13 +1,18 @@
 import React from 'react';
 import classes from './Post.module.css'
 
-function Post() {
+type PostPropsType = {
+    message: string
+    likes: number
+}
+
+function Post(props: PostPropsType) {
     return (
         <div className={classes.item}>
             <img src={'https://pixelbox.ru/wp-content/uploads/2021/05/ava-vk-animal-91.jpg'}/>
-            Post1
+            {props.message}
             <div>
-                <span> like </span>
+                <span> {props.likes} like </span>
             </div>
         </div>
 

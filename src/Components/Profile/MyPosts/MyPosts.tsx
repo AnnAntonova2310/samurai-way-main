@@ -13,12 +13,8 @@ function MyPosts() {
 
             <div className={classes.posts}>
                 New post
-                <Post/>
-                <Post/>
-                <Post/>
-                <Post/>
-                <Post/>
-                <Post/>
+                <Post message={'Hi! How are you?'} likes={5}/>
+                <Post message={'It`s my first post'} likes={15}/>
                 <div className={classes.item}>
                     Post2
                 </div>
