@@ -9,7 +9,7 @@ function Profile() {
     return (
         <div>
             <ProfileInfo/>
-            <MyPosts/>
+            <MyPosts />
         </div>
     )
 }
