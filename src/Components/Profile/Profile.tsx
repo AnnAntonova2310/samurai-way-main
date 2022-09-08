@@ -9,7 +9,7 @@ function Profile() {
     return (
         <div>
             <ProfileInfo/>
-            <MyPosts />
+            <MyPosts id={1} message={'Hi'} likes={10}/>
         </div>
     )
 }

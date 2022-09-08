@@ -2,9 +2,13 @@ import React from 'react';
 import s from './MyPosts.module.css'
 import Post from "./Post/Post";
 
+type MyPostsPropsType = {
+    id: number,
+    message: string,
+    likes: number
+}
 
-
-const MyPosts = () => {
+const MyPosts = (props: MyPostsPropsType) => {
 
     let posts = [
         {id: 1, message: 'Hi! How are you?', likes: 5},
