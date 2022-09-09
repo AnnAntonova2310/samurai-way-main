@@ -1,15 +1,19 @@
 import React from 'react';
-import classes from './Profile.module.css'
-import Post from "./MyPosts/Post/Post";
-import MyPosts from "./MyPosts/MyPosts";
+import MyPosts, {PostType} from "./MyPosts/MyPosts";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 
+type ProfilePropsType= {
+    posts: Array<PostType>
+}
 
-function Profile() {
+function Profile(props: ProfilePropsType) {
+
+
+
     return (
         <div>
             <ProfileInfo/>
-            <MyPosts id={1} message={'Hi'} likes={10}/>
+            <MyPosts posts={props.posts}/>
         </div>
     )
 }
