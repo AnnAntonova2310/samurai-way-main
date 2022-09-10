@@ -10,6 +10,8 @@ import News from "./Components/News/News";
 import Music from "./Components/Music/Music";
 import Settings from "./Components/Settings/Settings";
 import {PostType} from "./Components/Profile/MyPosts/MyPosts";
+import {statePropsType} from "./redux/stateJS";
+
 
 export type MessageType ={
     id: number
@@ -17,9 +19,7 @@ export type MessageType ={
 }
 
 type AppPropsType = {
-    posts: Array<PostType>
-    dialogsData: Array<DialogType>
-    messagesData: Array<MessageType>
+    state: statePropsType
 }
 
 export type DialogType = {
@@ -38,8 +38,8 @@ function App(props: AppPropsType) {
                 <Navbar/>
 
                 <div className={'app-wrapper-content'}>
-                    <Route path={'/profile'} render={()=> <Profile posts={props.posts}/>}/>
-                    <Route exact path={'/dialogs'} component={()=> <Dialogs dialogsData={props.dialogsData} messagesData={props.messagesData}/>}/>
+                    <Route path={'/profile'} render={()=> <Profile state={props.state.profilePage}/>}/>
+                    <Route exact path={'/dialogs'} component={()=> <Dialogs messagePage={props.state.messagePage}/>}/>
                     <Route path={'/news'} component={()=> <News/>}/>
                     <Route path={'/music'} component={()=> <Music/>}/>
                     <Route path={'/settings'} component={()=> <Settings/>}/>
