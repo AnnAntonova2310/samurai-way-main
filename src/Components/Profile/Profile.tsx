@@ -6,6 +6,7 @@ type ProfilePropsType= {
     state: {
         posts: Array<PostType>
     }
+    addPost: (postMessage: string)=> void
 
 }
 
@@ -14,7 +15,7 @@ function Profile(props: ProfilePropsType) {
     return (
         <div>
             <ProfileInfo/>
-            <MyPosts posts={props.state.posts}/>
+            <MyPosts posts={props.state.posts} addPost={props.addPost}/>
         </div>
     )
 }

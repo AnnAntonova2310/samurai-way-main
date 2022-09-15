@@ -19,7 +19,8 @@ export type MessageType ={
 }
 
 type AppPropsType = {
-    state: statePropsType
+    state: statePropsType;
+    addPost: (postMessage: string) => void
 }
 
 export type DialogType = {
@@ -38,7 +39,7 @@ function App(props: AppPropsType) {
                 <Navbar/>
 
                 <div className={'app-wrapper-content'}>
-                    <Route path={'/profile'} render={()=> <Profile state={props.state.profilePage}/>}/>
+                    <Route path={'/profile'} render={()=> <Profile state={props.state.profilePage} addPost={props.addPost}/>}/>
                     <Route exact path={'/dialogs'} component={()=> <Dialogs messagePage={props.state.messagePage}/>}/>
                     <Route path={'/news'} component={()=> <News/>}/>
                     <Route path={'/music'} component={()=> <Music/>}/>

@@ -10,7 +10,7 @@ export type PostType = {
 
 type MyPostsPropsType = {
     posts: Array<PostType>
-
+    addPost: (postMessage: string)=> void
 }
 
 const MyPosts = (props: MyPostsPropsType) => {
@@ -22,7 +22,7 @@ const MyPosts = (props: MyPostsPropsType) => {
     let newPostElement = React.createRef<any>();
     let addPost = () => {
         let text = newPostElement.current.value;
-        alert(text);
+        props.addPost(text);
         newPostElement.current.value='';
     }
 
