@@ -4,8 +4,7 @@ import './index.css';
 import App from './App';
 import state from './redux/stateJS'
 import {addPost} from "./redux/stateJS";
+import {rerenderEntireTree} from "./render";
 
-ReactDOM.render(
-    <App state={state} addPost={addPost}/>,
-  document.getElementById('root')
-);
+
+rerenderEntireTree(state)

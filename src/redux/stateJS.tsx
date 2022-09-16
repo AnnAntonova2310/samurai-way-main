@@ -1,6 +1,7 @@
 import React from 'react';
 import {PostType} from "../Components/Profile/MyPosts/MyPosts";
 import {DialogType, MessageType} from "../App";
+import {rerenderEntireTree} from '../render'
 
 export type statePropsType = {
     profilePage: {
@@ -44,6 +45,7 @@ export let addPost=(postMessage: string)=> {
         likes: 0,
     }
     state.profilePage.posts.push(newPost)
+    rerenderEntireTree(state)
 }
 
 export default state;
