@@ -6,6 +6,7 @@ import {rerenderEntireTree} from '../render'
 export type statePropsType = {
     profilePage: {
         posts: Array<PostType>
+        newPostText: string
     },
     messagePage: {
         dialogsData: Array<DialogType>
@@ -18,7 +19,8 @@ let state = {
         posts: [
             {id: 1, message: 'Hi! How are you?', likes: 5},
             {id: 2, message: 'It`s my first post', likes: 15},
-        ]
+        ],
+        newPostText: 'it-kamasutra.com'
     },
     messagePage: {
         dialogsData: [
@@ -38,13 +40,20 @@ let state = {
     }
 }
 
-export let addPost=(postMessage: string)=> {
+export let addPost = () => {
     let newPost = {
         id: 5,
-        message: postMessage,
+        message: state.profilePage.newPostText,
         likes: 0,
     }
     state.profilePage.posts.push(newPost)
+    state.profilePage.newPostText=''
+    rerenderEntireTree(state)
+}
+
+export let updateNewPostText = (newText: string) => {
+    state.profilePage.newPostText = newText
+
     rerenderEntireTree(state)
 }
 
