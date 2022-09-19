@@ -1,7 +1,7 @@
 import React from 'react';
 import {PostType} from "../Components/Profile/MyPosts/MyPosts";
 import {DialogType, MessageType} from "../App";
-import {rerenderEntireTree} from '../render'
+
 
 export type statePropsType = {
     profilePage: {
@@ -13,8 +13,8 @@ export type statePropsType = {
         messagesData: Array<MessageType>
     }
 }
-
-let state = {
+let rerenderEntireTree = (state: statePropsType) => {}
+let state: statePropsType = {
     profilePage: {
         posts: [
             {id: 1, message: 'Hi! How are you?', likes: 5},
@@ -53,8 +53,11 @@ export let addPost = () => {
 
 export let updateNewPostText = (newText: string) => {
     state.profilePage.newPostText = newText
-
     rerenderEntireTree(state)
+}
+
+export const subscribe = (observer: (state: statePropsType) => void) => {
+    rerenderEntireTree = observer
 }
 
 export default state;
