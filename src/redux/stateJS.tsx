@@ -6,11 +6,13 @@ import {DialogType, MessageType} from "../App";
 export type storeType = {
     _state: statePropsType
     _callSubscriber: (state: statePropsType) => void
-    updateNewPostText: (newText: string) => void
-    getState: () => statePropsType
-    addPost: () => void
+    // updateNewPostText: (newText: string) => void
     subscribe: (observer: (state: statePropsType) => void) => void
+    getState: () => statePropsType
+    // addPost: () => void
+    dispatch: any
 }
+
 export type statePropsType = {
     profilePage: {
         posts: Array<PostType>
@@ -48,30 +50,31 @@ let store: storeType = {
             ]
         }
     },
-    getState() {
-        return this._state
-    },
     _callSubscriber(state: statePropsType) {
         console.log('chanched')
     },
-    addPost() {
-        let newPost = {
-            id: 5,
-            message: this._state.profilePage.newPostText,
-            likes: 0,
-        }
-        this._state.profilePage.posts.push(newPost)
-        this._state.profilePage.newPostText = ''
-        this._callSubscriber(this._state)
-    },
-
-    updateNewPostText(newText: string) {
-        this._state.profilePage.newPostText = newText
-        this._callSubscriber(this._state)
+    getState() {
+        return this._state
     },
     subscribe(observer: (state: statePropsType) => void) {
         this._callSubscriber = observer
+    },
+    dispatch(action: any) {
+        if (action==='ADD POST') {
+            let newPost = {
+                id: 5,
+                message: this._state.profilePage.newPostText,
+                likes: 0,
+            }
+            this._state.profilePage.posts.push(newPost)
+            this._state.profilePage.newPostText = ''
+            this._callSubscriber(this._state)
+        } else if (action==='UPDATE-NEW-POST-TEXT') {
+            this._state.profilePage.newPostText = action.newText
+            this._callSubscriber(this._state)
+        }
     }
+
 
 }
 
