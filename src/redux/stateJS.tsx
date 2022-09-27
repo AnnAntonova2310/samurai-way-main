@@ -1,6 +1,7 @@
 import React from 'react';
 import {PostType} from "../Components/Profile/MyPosts/MyPosts";
 import {DialogType, MessageType} from "../App";
+import {text} from "stream/consumers";
 
 
 export type storeType = {
@@ -23,6 +24,9 @@ export type statePropsType = {
         messagesData: Array<MessageType>
     }
 }
+
+const ADD_POST = 'ADD-POST';
+const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
 
 let store: storeType = {
     _state: {
@@ -60,7 +64,7 @@ let store: storeType = {
         this._callSubscriber = observer
     },
     dispatch(action: any) {
-        if (action==='ADD POST') {
+        if (action.type === ADD_POST) {
             let newPost = {
                 id: 5,
                 message: this._state.profilePage.newPostText,
@@ -69,7 +73,7 @@ let store: storeType = {
             this._state.profilePage.posts.push(newPost)
             this._state.profilePage.newPostText = ''
             this._callSubscriber(this._state)
-        } else if (action==='UPDATE-NEW-POST-TEXT') {
+        } else if (action.type === UPDATE_NEW_POST_TEXT) {
             this._state.profilePage.newPostText = action.newText
             this._callSubscriber(this._state)
         }
@@ -78,5 +82,11 @@ let store: storeType = {
 
 }
 
+export const addPostActionCreator = () => {
+    return {type: ADD_POST}
+}
+export const updateNewPostTextActionCreator = (text: string) => {
+    return {type: UPDATE_NEW_POST_TEXT, newText: text}
+}
 
 export default store;
