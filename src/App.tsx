@@ -10,7 +10,7 @@ import News from "./Components/News/News";
 import Music from "./Components/Music/Music";
 import Settings from "./Components/Settings/Settings";
 import {PostType} from "./Components/Profile/MyPosts/MyPosts";
-import {statePropsType} from "./redux/stateJS";
+import store, {statePropsType} from "./redux/stateJS";
 
 
 export type MessageType ={
@@ -46,7 +46,7 @@ function App(props: AppPropsType) {
                         dispatch={props.dispatch}
                         newPostText={props.state.profilePage.newPostText}
                     />}/>
-                    <Route exact path={'/dialogs'} component={()=> <Dialogs messagePage={props.state.messagePage}/>}/>
+                    <Route exact path={'/dialogs'} component={()=> <Dialogs dispatch={props.dispatch} messagePage={props.state.messagePage}/>}/>
                     <Route path={'/news'} component={()=> <News/>}/>
                     <Route path={'/music'} component={()=> <Music/>}/>
                     <Route path={'/settings'} component={()=> <Settings/>}/>
